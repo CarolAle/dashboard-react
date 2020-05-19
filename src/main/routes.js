@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, Redirect, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, Redirect, BrowserRouter, Switch } from 'react-router-dom'
 
 import Dashboard from '../dashboard/dashboard'
 import BillingCycle from '../billingCycle/billingCycle'

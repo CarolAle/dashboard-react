@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 import ContentHeader from '../common/template/contentHeader'
 import Content from '../common/template/content'
