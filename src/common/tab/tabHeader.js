@@ -6,13 +6,13 @@ import If from '../operator/if'
 
 class TabHeader extends Component {
     render() {
-        const selected = this.props.selected === this.props.target
+        const selected = this.props.tab.selected === this.props.target
         const visible = this.props.tab.visible[this.props.target]
         return (
             <If test={visible}>
                 <li className={selected ? "nav-item active" : "nav-item"}>
-                    <a className="nav-link" href="javascript;;"
-                        data-toggle="tab"
+                    <a className="nav-link" href='javascript;;'
+                        data-toggle='tab'
                         onClick={() => this.props.selectTab(this.props.target)}
                         data-target={this.props.target}>
                             <i className={`fa fa-${this.props.icon}`}></i> {this.props.label}
@@ -25,4 +25,4 @@ class TabHeader extends Component {
 
 const mapStateToProps = state => ({tab: state.tab})
 const mapDispatchToProps = dispatch => bindActionCreators({selectTab}, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps) (TabHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(TabHeader)
