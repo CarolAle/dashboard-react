@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './main/App';
+import './common/template/custom.css'
 import { createStore, applyMiddleware } from 'redux'
 import promise from 'redux-promise'
 import { Provider } from 'react-redux'

@@ -11,14 +11,12 @@ import List from '../billingCycle/billingCycleList'
 import Form from '../billingCycle/billingCycleForm'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { selectTab, showTabs } from '../common/tab/tabActions'
-import { create, update, remove } from '../billingCycle/billingCycleActions'
+import { init, create, update, remove } from '../billingCycle/billingCycleActions'
 
 class BillingCycle extends Component {
 
     componentDidMount() {
-        this.props.selectTab('tabList')
-        this.props.showTabs('tabList', 'tabCreate')
+        this.props.init()
     }
     render() {
         return (
@@ -39,13 +37,16 @@ class BillingCycle extends Component {
                                     <List />
                                 </TabContent>
                                 <TabContent id="tabCreate">
-                                    <Form onSubmit={this.props.create} />
+                                    <Form onSubmit={this.props.create} 
+                                        submitLabel='Incluir' submitClass='primary' />
                                 </TabContent>
                                 <TabContent id="tabUpdate">
-                                    <Form onSubmit={this.props.update} />
+                                    <Form onSubmit={this.props.update} 
+                                        submitLabel='Alterar' submitClass='info' />
                                 </TabContent>
                                 <TabContent id="tabDelete">
-                                <Form onSubmit={this.props.remove} />
+                                <Form onSubmit={this.props.remove} readOnly={true}
+                                    submitLabel='Excluir' submitClass='danger' />
                                 </TabContent>
                             </TabsContent>
                         </Tabs>
@@ -56,5 +57,6 @@ class BillingCycle extends Component {
     }
 }
 
-const mapDispathToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update, remove}, dispatch)
+const mapDispathToProps = dispatch => bindActionCreators({
+    init, create, update, remove}, dispatch)
 export default connect(null, mapDispathToProps) (BillingCycle)
