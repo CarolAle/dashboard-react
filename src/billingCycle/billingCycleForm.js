@@ -5,10 +5,21 @@ import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { init } from './billingCycleActions'
 import LabelInput from '../common/form/labelInput'
 import ItemList from './itemList'
+import Summary from './summary'
 
 class BillingCycleForm extends Component {
+
+    calculateSummary() {
+        const sum = (t, v) => t + v
+        return {
+            sumOfCredits: this.props.credits.map(c => +c.value || 0).reduce(sum),
+            sumOfDebts: this.props.debts.map(d => +d.value || 0).reduce(sum)
+        }
+    }
+
     render() {
         const { handleSubmit, readOnly, credits, debts } = this.props
+        const { sumOfCredits, sumOfDebts } = this.calculateSummary()
         return (
             <form onSubmit={handleSubmit}>
                 <div className="card-body">
@@ -16,6 +27,9 @@ class BillingCycleForm extends Component {
                         <Field name="name" component={LabelInput} readOnly={readOnly} label="Nome" cols="12 4" placeholder="Informe o nome" />
                         <Field name="month" component={LabelInput} readOnly={readOnly} label="Mês" cols="12 4" placeholder="Informe o mês" />
                         <Field name="year" component={LabelInput} readOnly={readOnly} label="Ano" cols="12 4" placeholder="Informe o Ano" />
+                    </div>
+                    <Summary credit={sumOfCredits} debt={sumOfDebts}></Summary>
+                    <div className="row">
                         <ItemList cols="12 6" list={credits} readOnly={readOnly}
                             field='credits' legend='Créditos' showStatus={true}/>
                         <ItemList cols="12 6" list={debts} readOnly={readOnly}
