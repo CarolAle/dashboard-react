@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Grid from '../common/layout/grid'
 import ValueBox from '../common/widget/valueBox'
 

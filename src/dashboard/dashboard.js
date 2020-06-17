@@ -9,7 +9,7 @@ import { getSummary } from './dashboardActions'
 
 class Dashboard extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.getSummary()
     }
     render() {
